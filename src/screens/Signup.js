@@ -6,13 +6,19 @@ const SignUp = () => {
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
-        const response = fetch("http://localhost:4000/api/createuser", {
+        const response = await fetch("http://localhost:4000/api/createuser", {
             method:'POST',
-            header:{
+            headers:{
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify()
+            body:JSON.stringify({name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation})
         }) 
+        const json = await response.json()
+        console.log(json)
+        if(!json.success)
+        {
+          alert("Please enter valid credentials")
+        }
     }
 
     const onChanges = (event) => {
@@ -24,7 +30,7 @@ const SignUp = () => {
     <div className="container">
       <form onSubmit={handleSubmit}>
       <div className="mb-3">
-          <label for="name" className="form-label">
+          <label htmlFor="name" className="form-label">
             Name
           </label>
           <input
@@ -36,7 +42,7 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
@@ -53,7 +59,7 @@ const SignUp = () => {
           </div>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input
@@ -66,14 +72,14 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Address
           </label>
           <input
-            type="password"
+            type="text"
             className="form-control"
             id="exampleInputPassword1"
-            name="address"
+            name="geolocation"
             value={credentials.geolocation}
             onChange={onChanges}
           />
