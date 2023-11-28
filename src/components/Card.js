@@ -8,7 +8,6 @@ export default function Card(props)  {
   let options = props.options
   let priceOptions = Object.keys(options)
   
-
 // default quantity and size for food items
   const [qty, setQty] = useState(1)
   const [size, setSize] = useState("")
@@ -18,6 +17,7 @@ export default function Card(props)  {
     await dispatch({type:"ADD", id:props.foodItem._id, name:props.foodItem.name, price:finalPrice, qty:qty, size:size})
     console.log(data)
   }
+
 // final price of items 
   let finalPrice = qty * parseInt(options[size]);
 

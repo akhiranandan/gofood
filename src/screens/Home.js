@@ -20,7 +20,6 @@ const Home = () => {
 
     setFoodItem(response[0])
     setFoodCat(response[1])
-    // console.log(response[0], response[1])
   }
 
   useEffect(() => {
@@ -30,6 +29,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
+{/*  Sliding Carousel images part   */}
       <div>
       <div
         id="carouselExampleControls"
@@ -48,9 +48,6 @@ const Home = () => {
                 value={search}
                 onChange={(e) => {setSearch(e.target.value)}}
               />
-              {/* <button className="btn btn-outline-success text-white bg-success" type="submit"> 
-                Search
-              </button> */}
             </div>
           </div>
           <div className="carousel-item active">
@@ -104,6 +101,8 @@ const Home = () => {
         </button>
       </div>
       </div>
+
+{/* Filtering through the Food Categories and Food Items and displaying on front end */}
       <div className="container">
         {
           foodCat !== []
